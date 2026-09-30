@@ -49,6 +49,45 @@ const projects = [
   {title:'EEG Interface', track:'hci', level:'Advanced / HOT', time:'4–6 недель', desc:'Экспериментальная BCI-система визуализации и преобразования EEG в команды.', task:'Пройти путь от сырого сигнала и частотного анализа до контролируемого эксперимента и real-time классификации.', result:'Исследовательский интерфейс с acquisition, обработкой, извлечением признаков и демонстрацией BCI-управления.', tags:['EEG','FFT','BCI'], hot:true}
 ];
 
+const repositoryBase = 'https://github.com/STAP16/TAIL-PROJECTS/blob/main/';
+const projectFiles = {
+  'Campus Events': 'MINI_PROJECTS/WEB/Campus Events - Веб интерфейс мероприятия колледжа.md',
+  'Lost & Found': 'MINI_PROJECTS/WEB/Lost & Found - Потерянные вещи.md',
+  'LinkHub': 'MINI_PROJECTS/WEB/LinkHub - Персональная страница.md',
+  'Equipment Booking': 'MINI_PROJECTS/WEB/Equipment Booking - Бронирование оборудования.md',
+  'MiniLab Project Finder': 'MINI_PROJECTS/WEB/MiniLab Project Finder - Поисковик проектов.md',
+  'Campus News Intelligence': 'MINI_PROJECTS/DATA/Campus News Intelligence - Новости колледжа.md',
+  'College Events Intelligence': 'MINI_PROJECTS/DATA/College Events Intelligence - Мероприятия и аналитика.md',
+  'TAIL Grants Radar': 'MINI_PROJECTS/DATA/TAIL Grants Radar - Финансовый радар.md',
+  'TAIL Opportunity Radar': 'MINI_PROJECTS/DATA/TAIL Opportunity Radar - Радар возможностей.md',
+  'Second Brain': 'MINI_PROJECTS/AI_AGENTS/Second Brain — Персональная система знаний.md',
+  'College Meeting Agent': 'MINI_PROJECTS/AI_AGENTS/College Meeting Agent - Агент Референд.md',
+  'College Methodologist Agent': 'MINI_PROJECTS/AI_AGENTS/College Methodologist Agent - Агент Методист.md',
+  'College Event Manager Agent': 'MINI_PROJECTS/AI_AGENTS/College Event Manager Agent - Агент управления мероприятиями.md',
+  'Student Navigator Agent': 'MINI_PROJECTS/AI_AGENTS/Student Navigator Agent - Агент сопровождения студента.md',
+  'AI QA Agent for POLY': 'MINI_PROJECTS/AI_AGENTS/AI QA Agent for POLY.md',
+  'Career Quest': 'MINI_PROJECTS/GAMEDEV/Career Quest - 2D Квест по специальности.md',
+  'Virtual College': 'MINI_PROJECTS/GAMEDEV/Virtual College - 3D бродилка по колледжу.md',
+  'Voice Lab Controller': 'MINI_PROJECTS/ARDUINO_ROBOTICS/Voice Lab Controller - Голосовой контроллер лаборатории.md',
+  'Physical POLY': 'MINI_PROJECTS/ARDUINO_ROBOTICS/Physical POLY - Физическая оболочка POLY.md',
+  'Talking Plant': 'MINI_PROJECTS/ARDUINO_ROBOTICS/Talking Plant - Говорящее растение.md',
+  'TAIL Status Cube': 'MINI_PROJECTS/ARDUINO_ROBOTICS/TAIL Status Cube - Куб состояния.md',
+  'Smart Demo Stand': 'MINI_PROJECTS/ARDUINO_ROBOTICS/Smart Demo Stand - Интерактивный демонстрационный стенд.md',
+  'AI Drawing Robot': 'MINI_PROJECTS/ARDUINO_ROBOTICS/AI Drawing Robot - Робот рисовальщик.md',
+  'Campus Environment Node': 'MINI_PROJECTS/ARDUINO_ROBOTICS/Campus Environment Node - Мониторинг среды колледжа.md',
+  'One-Hand Interface': 'MINI_PROJECTS/ARDUINO_ROBOTICS/One-Hand Interface - Однорукий интерфейс.md',
+  'POLY Button': 'MINI_PROJECTS/ARDUINO_ROBOTICS/POLY Button - Кнопка вызова AI ассистента.md',
+  'TAIL HAND': 'MINI_PROJECTS/ASSISTIVE_TECH/TAIL HAND - Прототип роботизированной кисти.md',
+  'Smart Cane Prototype': 'MINI_PROJECTS/ASSISTIVE_TECH/Smart Cane Prototype - Умная трость.md',
+  'Presentation BioCoach': 'MINI_PROJECTS/ASSISTIVE_TECH/BioCoach - Стресс Коуч.md',
+  'NeuroControl Lab': 'MINI_PROJECTS/HCI/NeuroControl Lab.md',
+  'EEG Interface': 'MINI_PROJECTS/ASSISTIVE_TECH/EEG Interface - Brain-Computer Interface.md'
+};
+
+function githubFileUrl(title) {
+  return repositoryBase + projectFiles[title].split('/').map(encodeURIComponent).join('/');
+}
+
 const directionGrid = document.querySelector('#directionGrid');
 const filters = document.querySelector('#filters');
 const projectGrid = document.querySelector('#projectGrid');
@@ -134,6 +173,7 @@ function openProject(index, updateHash = true) {
     <section class="dialog-section"><h3>Задача</h3><p>${p.task}</p></section>
     <section class="dialog-section"><h3>Результат</h3><p>${p.result}</p></section>
     <section class="dialog-section"><h3>Технологии и навыки</h3><div class="dialog-tags">${p.tags.map(tag => `<span>${tag}</span>`).join('')}</div></section>
+    <a class="dialog-repo-link" href="${githubFileUrl(p.title)}" target="_blank" rel="noopener noreferrer">Полное описание на GitHub <span>↗</span></a>
   </div>`;
   document.body.classList.add('dialog-open');
   dialog.showModal();
